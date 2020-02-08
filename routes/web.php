@@ -13,7 +13,6 @@ use Nexmo\Laravel\Facade\Nexmo;
 |
 */
 
-Route::view('/attendance', 'react');
 
 Auth::routes();
 
@@ -26,6 +25,9 @@ Route::get('/',function(){
 Route::get('/students', 'HomeController@getStudents')->name('students');
 Route::get('/courses', 'HomeController@getCourses')->name('courses');
 Route::post('/create-courses', 'StaffController@Courses')->name('staff.course');
+Route::get('/attendance', function(){
+    return view('attendance');
+});
 
 
 Route::get('/try', function () {
