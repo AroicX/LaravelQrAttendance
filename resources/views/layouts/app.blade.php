@@ -24,13 +24,13 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <!-- Icons -->
-    <link href="./argon/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
-    <link href="./argon/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="../argon/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+    <link href="../argon/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link href="./argon/css/argon-dashboard.css?v=1.1.1" rel="stylesheet" />
-
+    <link href="../argon/css/argon-dashboard.css?v=1.1.1" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="{{ asset('/css/select2.min.css') }}">
-
+    @yield('css')
 </head>
 
 <body>
@@ -76,11 +76,11 @@
                                 <div class=" dropdown-header noti-title">
                                     <h6 class="text-overflow m-0">Welcome!</h6>
                                 </div>
-                                <a href="./examples/profile.html" class="dropdown-item">
+                                <a href="/profile" class="dropdown-item">
                                     <i class="ni ni-single-02"></i>
                                     <span>My profile</span>
                                 </a>
-                                <a href="./examples/profile.html" class="dropdown-item">
+                                {{-- <a href="./examples/profile.html" class="dropdown-item">
                                     <i class="ni ni-settings-gear-65"></i>
                                     <span>Settings</span>
                                 </a>
@@ -91,7 +91,7 @@
                                 <a href="./examples/profile.html" class="dropdown-item">
                                     <i class="ni ni-support-16"></i>
                                     <span>Support</span>
-                                </a>
+                                </a> --}}
                                 <div class="dropdown-divider"></div>
                                 <a href="{{ route('logout') }}" class="dropdown-item" 
                                   onclick="event.preventDefault();
@@ -117,14 +117,22 @@
                     <div class="header-body">
                         <!-- Card stats -->
                         <div class="row">
-                            <div class="col-xl-3 col-lg-6">
+                            <div class="col-xl-6 col-lg-6">
                             <a href="{{ route('courses')}}">
                                 <div class="card card-stats mb-4 mb-xl-0">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
                                                 <h5 class="card-title text-uppercase text-muted mb-0">Courses</h5>
-                                                <span class="h2 font-weight-bold mb-0">0</span>
+                                            <span class="h2 font-weight-bold mb-0">
+                                                <?php
+                                                    $item = json_decode(Auth::User()->courses);
+                                                if($item){
+                                                    echo count($item);
+
+                                                }
+                                                ?>
+                                            </span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -140,30 +148,30 @@
                                 </div>
                               </a>
                             </div>
-                            <div class="col-xl-3 col-lg-6">
+                            <div class="col-xl-6 col-lg-6">
                                 <div class="card card-stats mb-4 mb-xl-0">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                                                <span class="h2 font-weight-bold mb-0">2,356</span>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Students</h5>
+                                            <span class="h2 font-weight-bold mb-0">{{ count(\App\Student::all()) }}</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div
                                                     class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                                    <i class="fas fa-chart-pie"></i>
+                                                    <i class="fas fa-users"></i>
                                                 </div>
                                             </div>
                                         </div>
                                         <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i>
+                                            {{-- <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i>
                                                 3.48%</span>
-                                            <span class="text-nowrap">Since last week</span>
+                                            <span class="text-nowrap">Since last week</span> --}}
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-6">
+                            {{-- <div class="col-xl-3 col-lg-6">
                                 <div class="card card-stats mb-4 mb-xl-0">
                                     <div class="card-body">
                                         <div class="row">
@@ -205,7 +213,7 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -214,15 +222,16 @@
         </div>
     </div>
 
-    <script src="./argon/js/plugins/jquery/dist/jquery.min.js"></script>
-    <script src="./argon/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../argon/js/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="../argon/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!--   Optional JS   -->
-    <script src="./argon/js/plugins/chart.js/dist/Chart.min.js"></script>
-    <script src="./argon/js/plugins/chart.js/dist/Chart.extension.js"></script>
+    <script src="../argon/js/plugins/chart.js/dist/Chart.min.js"></script>
+    <script src="../argon/js/plugins/chart.js/dist/Chart.extension.js"></script>
     <!--   Argon JS   -->
     <script src="./argon/js/argon-dashboard.min.js?v=1.1.1"></script>
     <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
     <script src="{{ asset('/js/select2.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     @yield('js')
 

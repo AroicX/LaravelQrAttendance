@@ -17,9 +17,9 @@ class CreateAttendancesTable extends Migration
             $table->increments('id');
             $table->integer('staff_id')->unsigned();
             $table->integer('student_id')->unsigned();
+            $table->integer('calendar_id')->unsigned();
+            $table->integer('course_id')->unsigned();
             $table->enum('status',['Present','Absent'])->default('Present');
-            $table->dateTime('date');
-            $table->date('day');
             $table->timestamps();
         });
     }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Student;
 use App\Course;
+use App\Attendance;
+use App\Calendar;
 
 
 class HomeController extends Controller
@@ -46,4 +48,24 @@ class HomeController extends Controller
         // dd($courses);
         return view('courses',compact('courses','data'));
     }
+
+
+    public function getStudentById($id = null)
+    {
+
+        $student = Student::where('id',$id)->first();
+        $studentWithAttendance = Student::where('id',$id)->with('Attendance')->first();
+        $attendance = $studentWithAttendance->attendance;
+
+        // return count($attendance);
+
+
+        $query = [
+            'user' => json_encode($student),
+            'attendance' => rand(10, 100)
+        ];
+
+        return $query;
+    }
+
 }

@@ -37,11 +37,11 @@
                     <div class=" dropdown-header noti-title">
                         <h6 class="text-overflow m-0">Welcome!</h6>
                     </div>
-                    <a href="./examples/profile.html" class="dropdown-item">
+                    <a href="/profile" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
                         <span>My profile</span>
                     </a>
-                    <a href="./examples/profile.html" class="dropdown-item">
+                    {{-- <a href="./examples/profile.html" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
                         <span>Settings</span>
                     </a>
@@ -52,7 +52,7 @@
                     <a href="./examples/profile.html" class="dropdown-item">
                         <i class="ni ni-support-16"></i>
                         <span>Support</span>
-                    </a>
+                    </a> --}}
                     <div class="dropdown-divider"></div>
                     <a href="#!" class="dropdown-item">
                         <i class="ni ni-user-run"></i>
@@ -111,12 +111,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link " href="./examples/tables.html">
+                  <a class="nav-link " href="{{ url('time-table') }}" target="_blank">
                       <i class="ni ni-bullet-list-67 text-red"></i> Time Tables
                   </a>
               </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="./examples/profile.html">
+                    <a class="nav-link " href="/profile">
                         <i class="ni ni-single-02 text-yellow"></i> Profile
                     </a>
                 </li>

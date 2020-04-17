@@ -49,7 +49,7 @@ Courses
 
                         </div>
 
-                     
+
                     </div>
                 </div>
 
@@ -57,7 +57,7 @@ Courses
                 <div class="col-md-12">
 
 
-                <h2 class="text-dark mx-2">My Courses</h2>
+                    <h2 class="text-dark mx-2">My Courses</h2>
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
@@ -70,21 +70,26 @@ Courses
                             </tr>
                         </thead>
                         <tbody>
-
-                            @foreach (\json_decode(Auth::User()->courses) as $course)
-                                <tr>
+                            @if(Auth::User()->courses != null)
+                            @foreach (json_decode(Auth::User()->courses) as $key => $course)
+                            <tr>
                                 <?php 
-                                    $item =  \App\Course::where('id',$course)->first();
-                                ?>
+                                        $item =  \App\Course::where('id',$course)->first();
+                                    ?>
 
+                                <td>{{$key + 1}}</td>
                                 <td>{{$item->course_title}}</td>
                                 <td>{{$item->course_code}}</td>
                                 <td>{{$item->course_unit}}</td>
                                 <td><button class="btn btn-danger close">x</button></td>
 
                             </tr>
-                                @endforeach
+                            @endforeach
+                            @else
 
+                            <span class="text-danger">You have no courses yet please add course</span>
+
+                            @endif
 
                         </tbody>
 
