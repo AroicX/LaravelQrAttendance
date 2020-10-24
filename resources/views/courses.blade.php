@@ -30,7 +30,7 @@ Courses
                                     <br>
                                     <span class="text-danger" style="font-size: 11px;">Please don't submit page if you
                                         have not finished selecting courses.</span>
-                                    <select id="courses" class="form-control" name="course[]" multiple="multiple">
+                                    <select id="courses" class="form-control" name="course[]" multiple="multiple" >
 
                                         @foreach ($courses as $course)
                                         <option value="{{$course->id}}">{{$course->course_code}}</option>
@@ -122,13 +122,45 @@ Courses
 
 
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 <script>
+   
+    
     $(document).ready(function () {
         // alert('fired')
-        $('#courses').select2({
-            placeholder: 'Select an option'
-        });
+        // $('#courses').select2({
+        //     placeholder: 'Select an option'
+        // });
+
+         $.ajax({
+                url: '/get-courses',
+                type: 'GET'
+            }).done(function(response){
+                getCourse(response)
+            })
+        
+        
+        
+        
+        
+
+        
     })
+
+    function getCourse(vals){
+        var s2 = $("#courses").select2({
+                placeholder: "Choose event type",
+                tags: true
+            });
+
+            vals.forEach(function(e){
+            if(!s2.find('option:contains(' + e + ')').length) 
+            s2.append($('<option>').text(e));
+            });
+
+            s2.val(vals).trigger("change"); 
+        
+    }
 </script>
 
 

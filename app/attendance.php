@@ -11,7 +11,7 @@ class Attendance extends Model
         return $this->belongsTo('App\Calendar');
     }
     public function Student(){
-        return $this->hasMany('App\Student','id','student_id');
+        return $this->hasOne('App\Student','id','student_id');
     }
     public function Courses(){
         return $this->hasMany('App\Course','id','course_id');

@@ -120,11 +120,7 @@
                         <i class="ni ni-single-02 text-yellow"></i> Profile
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="./examples/profile.html">
-                        <i class="ni ni-settings text-blue"></i> Settings
-                    </a>
-                </li>
+              
                 
               
             </ul>

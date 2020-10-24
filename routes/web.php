@@ -27,6 +27,7 @@ Route::get('/',function(){
 Route::get('/students', 'HomeController@getStudents')->name('students');
 Route::get('/students/{id}', 'HomeController@getStudentById')->name('students.id');
 Route::get('/courses', 'HomeController@getCourses')->name('courses');
+Route::get('/get-courses', 'StaffController@myCourses')->name('my.courses');
 Route::post('/create-courses', 'StaffController@Courses')->name('staff.course');
 Route::get('/attendance', function(){
     return view('attendance');
