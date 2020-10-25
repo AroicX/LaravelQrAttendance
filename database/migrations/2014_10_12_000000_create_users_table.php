@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
             $table
-                ->json('course_id')
+                ->string('course_id')
                 ->default([
                     1,
                     2,
